@@ -1,0 +1,79 @@
+package com.example.guessnumberpractice;
+
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class MainActivity extends Activity {
+
+  private ListView lv;
+	private String objects[] = {"myLinearLayout", "myRelativeLayout", "myTableLayout"};
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		
+		lv = (ListView) findViewById(R.id.lv);
+		
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, objects);
+		//what is simple_list_item_1?
+		lv.setAdapter(adapter);
+		lv.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+			//以上問號
+			{
+				//Toast.makeText(MainActivity.this, String.valueOf(arg2), Toast.LENGTH_LONG).show();
+				
+				switch (arg2) 
+				{
+				case 0: toLinearLayout(); break;
+				case 1: toRelativeLayout(); break;
+				case 2: toTableLayout(); break;
+				}
+				
+			}
+			
+		});
+		
+			
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}//end onCreate
+
+    private void toLinearLayout()
+    {
+    	Intent intent = new Intent(this, MyLinearLayout.class);
+    	startActivity(intent);
+    }
+	
+	private void toRelativeLayout()
+	{
+		Intent intent = new Intent(this, MyRelativeLayout.class);
+		startActivity(intent);
+	}
+	private void toTableLayout()
+	{
+		Intent intent = new Intent ( this, MyTableLayout.class);
+		startActivity(intent);
+	}
+
+}//end MainActivity
